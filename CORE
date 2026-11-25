@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bongstar Games | Official Satire Portal</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    body {
+      background-color: #0b0b0b;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* Navigation Bar */
+    header {
+      background-color: #000000;
+      border-bottom: 1px solid #222;
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .badge {
+      background-color: #fcaf17; /* Classic Rockstar Gold */
+      color: #000000;
+      font-weight: 900;
+      font-size: 1.5rem;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 2px solid #ffffff;
+      letter-spacing: -1px;
+    }
+
+    .brand-name {
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      color: #cccccc;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #fcaf17;
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.3)), 
+                  radial-gradient(circle at top right, #2e4a1e, #0b0b0b);
+      padding: 100px 5%;
+      border-bottom: 1px solid #222;
+    }
+
+    .hero-tag {
+      color: #fcaf17;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.1;
+      max-width: 700px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: #bbbbbb;
+      max-width: 550px;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: transparent;
+      color: #ffffff;
+      border: 2px solid #ffffff;
+      padding: 12px 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #fcaf17;
+      border-color: #fcaf17;
+      color: #000000;
+    }
+
+    /* Featured Games Grid */
+    .section {
+      padding: 60px 5%;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      border-left: 5px solid #fcaf17;
+      padding-left: 15px;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .game-card {
+      background-color: #161616;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .game-card:hover {
+      transform: translateY(-5px);
+      border-color: #fcaf17;
+    }
+
+    .card-banner {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      font-weight: 900;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .gtb-bg {
+      background: linear-gradient(135deg, #1b4332, #081c15);
+      color: #95d5b2;
+      text-shadow: 2px 2px 0px #000;
+    }
+
+    .rdw-bg {
+      background: linear-gradient(135deg, #7f1d1d, #2b0909);
+      color: #fca5a5;
+      text-shadow: 2px 2px 0px #000;
+    }
+
+    .bully-bg {
+      background: linear-gradient(135deg, #1e3a8a, #0f172a);
+      color: #fde047;
+      text-shadow: 2px 2px 0px #000;
+    }
+
+    .card-body {
+      padding: 25px;
+    }
+
+    .card-body h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .card-body p {
+      color: #aaaaaa;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      background-color: #262626;
+      color: #fcaf17;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    /* Newswire / Satire News */
+    .news-item {
+      background-color: #161616;
+      border: 1px solid #2a2a2a;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .news-date {
+      color: #fcaf17;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #000000;
+      border-top: 1px solid #222;
+      padding: 40px 5%;
+      text-align: center;
+      color: #666666;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="logo-box">
+      <div class="badge">B★</div>
+      <span class="brand-name">Bongstar Games</span>
+    </a>
+    <nav>
+      <a href="#games">Games</a>
+      <a href="#newswire">Newswire</a>
+      <a href="#merch">Stash</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-tag">Official Announcement</div>
+    <h1>Grand Theft Bong VI: Trailer 2 Delayed Again</h1>
+    <p>Return to Vice City's chillest dispensaries. Experience next-gen couch-lock physics and 4K snack-run missions—coming whenever we finish rolling.</p>
+    <a href="#games" class="btn">Explore Franchises</a>
+  </section>
+
+  <!-- Featured Games -->
+  <section id="games" class="section">
+    <h2 class="section-title">Featured Franchises</h2>
+    <div class="games-grid">
+      
+      <!-- Card 1 -->
+      <div class="game-card">
+        <div class="card-banner gtb-bg">Grand Theft Bong</div>
+        <div class="card-body">
+          <span class="tag">Open-World Satire</span>
+          <h3>Grand Theft Bong V</h3>
+          <p>Three low-motivation criminals pull off daring late-night drive-thru heists across the sunny streets of Los Santos.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="game-card">
+        <div class="card-banner rdw-bg">Red Dead Weedemption</div>
+        <div class="card-body">
+          <span class="tag">Western Adventure</span>
+          <h3>Red Dead Weedemption 2</h3>
+          <p>Outlaws on the run in 1899 America. Ride across the frontier, set up camp, and pass the peace pipe with the Van der Linde gang.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="game-card">
+        <div class="card-banner bully-bg">Bongstar Classics</div>
+        <div class="card-body">
+          <span class="tag">Bonus Title</span>
+          <h3>L.A. Noire: Hotbox Edition</h3>
+          <p>Interrogate suspects through a thick cloud of mystery in 1940s Los Angeles.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Newswire -->
+  <section id="newswire" class="section">
+    <h2 class="section-title">Bongstar Newswire</h2>
+    <div class="news-item">
+      <div class="news-date">November 24, 2026</div>
+      <h3>GTB Online: The Taco Truck Heist Update Now Live</h3>
+      <p>Earn double XP and triple snack-cash on all midnight delivery missions this week.</p>
+    </div>
+    <div class="news-item">
+      <div class="news-date">November 10, 2026</div>
+      <h3>Red Dead Weedemption Online: Naturalist & Herbalist Role</h3>
+      <p>Forage rare frontier herbs and brew custom tonics at your wilderness campsite.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Bongstar Games &copy; 2026. Parody & Satire Fan Project. Not affiliated with Rockstar Games or Take-Two Interactive.</p>
+  </footer>
+
+</body>
+</html>
