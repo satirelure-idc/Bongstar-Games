@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bongstar Games | Official Satire Portal</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+    body { background-color: #0b0b0b; color: #ffffff; line-height: 1.6; }
+    header { background-color: #000000; border-bottom: 1px solid #222; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+    .logo-box { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .badge { background-color: #fcaf17; color: #000000; font-weight: 900; font-size: 1.5rem; padding: 4px 12px; border-radius: 6px; border: 2px solid #ffffff; letter-spacing: -1px; }
+    .brand-name { color: #ffffff; font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; text-transform: uppercase; }
+    nav a { color: #cccccc; text-decoration: none; margin-left: 25px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; transition: color 0.2s; }
+    nav a:hover { color: #fcaf17; }
+    .hero { background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.3)), radial-gradient(circle at top right, #2e4a1e, #0b0b0b); padding: 100px 5%; border-bottom: 1px solid #222; }
+    .hero-tag { color: #fcaf17; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 10px; }
+    .hero h1 { font-size: 3.5rem; font-weight: 900; text-transform: uppercase; line-height: 1.1; max-width: 700px; margin-bottom: 20px; }
+    .hero p { color: #bbbbbb; max-width: 550px; font-size: 1.1rem; margin-bottom: 30px; }
+    .btn { display: inline-block; background-color: transparent; color: #ffffff; border: 2px solid #ffffff; padding: 12px 28px; font-weight: 800; text-transform: uppercase; text-decoration: none; letter-spacing: 1px; transition: all 0.2s; }
+    .btn:hover { background-color: #fcaf17; border-color: #fcaf17; color: #000000; }
+    .section { padding: 60px 5%; }
+    .section-title { font-size: 2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; border-left: 5px solid #fcaf17; padding-left: 15px; }
+    .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .game-card { background-color: #161616; border: 1px solid #2a2a2a; border-radius: 8px; overflow: hidden; transition: transform 0.2s, border-color 0.2s; display: flex; flex-direction: column; }
+    .game-card:hover { transform: translateY(-5px); border-color: #fcaf17; }
+    .clickable-card { cursor: pointer; }
+    .card-banner { height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; font-weight: 900; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
+    .gtb-bg { background: linear-gradient(135deg, #1b4332, #081c15); color: #95d5b2; text-shadow: 2px 2px 0px #000; }
+    .rdw-bg { background: linear-gradient(135deg, #7f1d1d, #2b0909); color: #fca5a5; text-shadow: 2px 2px 0px #000; }
+    .rdw1-bg { background: linear-gradient(135deg, #9a3412, #431407); color: #fed7aa; text-shadow: 2px 2px 0px #000; }
+    .bully-bg { background: linear-gradient(135deg, #1e3a8a, #0f172a); color: #fde047; text-shadow: 2px 2px 0px #000; }
+    .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+    .card-body h3 { font-size: 1.4rem; margin: 10px 0; }
+    .card-body p { color: #aaaaaa; font-size: 0.95rem; margin-bottom: 20px; }
+    .tag { display: inline-block; align-self: flex-start; background-color: #262626; color: #fcaf17; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
+    .card-link { margin-top: auto; color: #fcaf17; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .news-item { background-color: #161616; border: 1px solid #2a2a2a; padding: 20px; border-radius: 8px; margin-bottom: 15px; }
+    .news-date { color: #fcaf17; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.88); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+    .modal-overlay.active { display: flex; }
+    .modal-box { background-color: #141414; border: 2px solid #fcaf17; border-radius: 10px; max-width: 650px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 35px; position: relative; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9); }
+    .close-btn { position: absolute; top: 18px; right: 22px; background: none; border: none; color: #aaaaaa; font-size: 1.8rem; cursor: pointer; line-height: 1; transition: color 0.2s; }
+    .close-btn:hover { color: #fcaf17; }
+    .modal-header { border-bottom: 1px solid #2a2a2a; padding-bottom: 15px; margin-bottom: 20px; }
+    .modal-header h2 { font-size: 1.6rem; text-transform: uppercase; color: #ffffff; margin-top: 5px; }
+    .script-lines p { margin-bottom: 12px; font-size: 1rem; color: #e0e0e0; }
+    .speaker-doobie { color: #fca5a5; font-weight: 800; text-transform: uppercase; }
+    .speaker-john { color: #93c5fd; font-weight: 800; text-transform: uppercase; }
+    .script-watermark { margin-top: 25px; padding-top: 15px; border-top: 1px dashed #333; color: #fcaf17; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; text-align: center; }
+    .site-footer { background-color: #000000; border-top: 1px solid #222; padding: 40px 5%; text-align: center; color: #666666; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo-box">
+      <div class="badge">B★</div>
+      <span class="brand-name">Bongstar Games</span>
+    </a>
+    <nav>
+      <a href="#games">Games</a>
+      <a href="#newswire">Newswire</a>
+      <a href="#merch">Stash</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-tag">Official Announcement</div>
+    <h1>Grand Theft Bong VI: Out Now</h1>
+    <p>Return to Vice City's chillest dispensaries. Experience next-gen couch-lock physics and 4K snack-run missions—coming whenever we finish rolling.</p>
+    <a href="#games" class="btn">Explore Franchises</a>
+  </div>
+
+  <div id="games" class="section">
+    <h2 class="section-title">Featured Franchises</h2>
+    <div class="games-grid">
+      <div class="game-card">
+        <div class="card-banner gtb-bg">Grand Theft Bong</div>
+        <div class="card-body">
+          <span class="tag">Open-World Satire</span>
+          <h3>Grand Theft Bong V</h3>
+          <p>Three low-motivation criminals pull off daring late-night drive-thru smoke sessions across the sunny streets of Los Santos.</p>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <div class="card-banner rdw-bg">Red Dead Weedemption 2</div>
+        <div class="card-body">
+          <span class="tag">Western Adventure</span>
+          <h3>Red Dead Weedemption 2</h3>
+          <p>Dealers on the run in 1899 America. Ride across the frontier, set up camp, and pass the peace pipe with the Van der Bong gang.</p>
+        </div>
+      </div>
+
+      <div class="game-card clickable-card" onclick="document.getElementById('speechModal').classList.add('active')">
+        <div class="card-banner rdw1-bg">Red Dead Weedemption</div>
+        <div class="card-body">
+          <span class="tag">Classic Western</span>
+          <h3>Red Dead Weedemption 1</h3>
+          <p>John tracks down his former mentor in the mountains for one final, unforgettable smoke session.</p>
+          <span class="card-link">Read Doobie's Final Speech &rarr;</span>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <div class="card-banner bully-bg">Bongstar Classics</div>
+        <div class="card-body">
+          <span class="tag">Bonus Title</span>
+          <h3>L.A. Noire: Hotbox Edition</h3>
+          <p>Interrogate suspects through a thick cloud of mystery in 1940s Los Angeles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="newswire" class="section">
+    <h2 class="section-title">Bongstar Newswire</h2>
+    <div class="news-item">
+      <div class="news-date">November 24, 2026</div>
+      <h3>GTB Online: The Taco Truck Heist Update Now Live</h3>
+      <p>Earn double XP and triple snack-cash on all midnight delivery missions this week.</p>
+    </div>
+    <div class="news-item">
+      <div class="news-date">November 10, 2026</div>
+      <h3>Red Dead Weedemption Online: Naturalist & Herbalist Role</h3>
+      <p>Forage rare frontier herbs and brew custom tonics at your wilderness campsite.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="speechModal" onclick="if(event.target === this) this.classList.remove('active')">
+    <div class="modal-box">
+      <button class="close-btn" onclick="document.getElementById('speechModal').classList.remove('active')">&times;</button>
+      <div class="modal-header">
+        <span class="tag">Official Script Archive</span>
+        <h2>Red Dead Weedemption 1: Doobie's Final Speech</h2>
+      </div>
+      <div class="script-lines">
+        <p><span class="speaker-doobie">Doobie:</span> "Hello again, John"</p>
+        <p><span class="speaker-john">John:</span> "Hello, Doobie."</p>
+        <p><span class="speaker-doobie">Doobie:</span> "We've gotta stop smoking like this."</p>
+        <p><span class="speaker-john">John:</span> "Sure."</p>
+        <p><span class="speaker-doobie">Doobie:</span> "I got a blunt, John."</p>
+        <p><span class="speaker-john">John:</span> "You always got a blunt, Doobie."</p>
+        <p><span class="speaker-doobie">Doobie:</span> "We can't always fight weed, John. We can't fight vapes, we can't fight dirty bong water. We can't fight nothin'. My whole life, all I ever did was smoke."</p>
+        <p><span class="speaker-john">John:</span> "Then give up, Doobie."</p>
+        <p><span class="speaker-doobie">Doobie:</span> "But I can't give up neither, I can't put down my own bong. That's the paradox, John... you see?"</p>
+        <p><span class="speaker-john">John:</span> "Then I have to green out on you."</p>
+        <p><span class="speaker-doobie">Doobie:</span> "When I green out, they'll just find another stoner... they have to... because they have to justify their nicotine."</p>
+        <p><span class="speaker-doobie">Doobie:</span> "Our time has passed, John..."</p>
+      </div>
+      <div class="script-watermark">
+        (PROPERTY OF BONGSTAR GAMES: A FICTION COMPANY I MADE AT MIDNIGHT)
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer">
+    <p>Bongstar Games &copy; 2026. Parody & Satire Fan Project. Not affiliated with Rockstar Games or Take-Two Interactive.</p>
+  </div>
+
+</body>
+</html>
